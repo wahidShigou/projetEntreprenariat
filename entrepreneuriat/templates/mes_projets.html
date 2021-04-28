@@ -1,0 +1,23 @@
+
+{% extends "layout.html" %}
+{% block content %}
+    {% for projet in projets %}
+    <article class="media content-section">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="media-body">
+              <div class="article-metadata">
+                <a class="mr-2" href="#">{{ projet.porteurP.login }}</a>
+                <small class="text-muted">{{ projet.date_publication.strftime('%Y-%m-%d') }}</small>
+              </div>
+              <h2><a class="article-title" href="#">{{ projet.nom_projet }}</a></h2>
+              <p class="article-content">{{ projet.description }}</p>
+              
+              <a class="btn btn-secondary btn-sm " href="{{ url_for('modification_projet', projet_id=projet.id, action='update')}}">Mettre à jour</a>
+              <a class="btn btn-danger btn-sm " href="{{ url_for('modification_projet', projet_id=projet.id, action='delete')}}">Supprimer</a>
+            </div>
+          </div>
+        </div>
+      </article>      
+    {% endfor %}
+{% endblock content %}
